@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Division</title>
+    <link rel="stylesheet" href="../src/css/glossary.css">
+  </head>
+  <body>
+    <div id="mainDiv"></div>
+    <form method="GET" action="./">
+      <input type="hidden" name="origin" value="de">
+      Uebersetzt 
+      <input type="text" name="word" value="">
+      in
+      <select name="target">
+        <option value="*">alle verfügbare Sprachen</option>
+        <option value="fr">Französisch</option>
+        <option value="ar">Arabisch</option>
+        <option value="uk">Ukrainisch</option>
+      </select>
+      <button type="submit">Ok</button>
+    </form>
+    <script type="module" src="../src/js/glossary.js"></script>
+  </body>
+</html>
