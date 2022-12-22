@@ -1,10 +1,11 @@
-import {fetchAndOutputTranslation} from './fetchInfo.js';
+import { fetchAndOutputTranslation } from './fetchInfo.js';
+import { outputFetchedJson } from './fetchInfo.js';
 
 // Get a reference to the form element
 let form = document.querySelector('form');
 
 // Listen for the submit event on the form
-form.addEventListener('submit', event => {
+form.addEventListener('submit', async event => {
   // Prevent the default behavior of the form submission
   event.preventDefault();
 
@@ -13,6 +14,5 @@ form.addEventListener('submit', event => {
   let mathWord = document.querySelector('input[name="word"]').value;
 
   // Call the fetchAndOutputTranslation function with the user-entered values
-  fetchAndOutputTranslation(language, mathWord);
+  await outputFetchedJson(await fetchAndOutputTranslation(language, mathWord), mathWord);
 });
-
