@@ -1,17 +1,26 @@
-export function fetchTranslation(language, mathWord) {
+export function fetchAndOutputTranslation(language, mathWord) {
+  let outputElement = document.querySelector('#output');
   fetch(`https://mathcoach.htwsaar.de/online-glossary/api/translation/?origin=${language}&word=${mathWord}&target=*`)
     .then(response => {
       if (response.ok) {
-        // If the response is successful, then parse the JSON data
         return response.json();
       } else {
-        // If the response is not successful, then throw an error
         throw new Error("There was an error calling the API");
       }   
-    })  
+    })
+    .then(jsonOutput => {
+      let output = "";
+      if (jsonOutput.target.length === 0) {
+        output += "<p>Es scheint, dass es keine Übersetzung für Ihr Wort gibt. Bitte überprüfen Sie, dass Ihr Eintrag korrekt ist.</p>";
+      } else {
+        jsonOutput.target.forEach(entry => {
+          output += `<h1>${mathWord}</h1>`;
+          output += `<p>(<strong>${entry.language}</strong>) : ${entry.phrases[0].text  }</p>`;
+        });
+      }
+      outputElement.innerHTML = output;
+    })
     .catch(error => {
-      // If there is an error, then print the error message
       console.error(error.message);
     });
 }
-

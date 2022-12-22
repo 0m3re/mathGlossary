@@ -1,4 +1,4 @@
-import {fetchTranslation} from './fetchInfo.js';
+import {fetchAndOutputTranslation} from './fetchInfo.js';
 
 // Get a reference to the form element
 let form = document.querySelector('form');
@@ -12,9 +12,7 @@ form.addEventListener('submit', event => {
   let language = document.querySelector('input[name="origin"]').value;
   let mathWord = document.querySelector('input[name="word"]').value;
 
-  // Call the fetchTranslation function with the user-entered values
-  let jsonOutput = fetchTranslation(language, mathWord);
-
-  // Output the JSON data to the console
-  console.log(jsonOutput);
+  // Call the fetchAndOutputTranslation function with the user-entered values
+  fetchAndOutputTranslation(language, mathWord);
 });
+
